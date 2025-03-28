@@ -1,0 +1,135 @@
+
+{% extends 'header.html' %}
+{% load static %}
+
+
+{% block content %} 
+  <!-- /.navbar-collapse --> 
+    </div>
+  </nav>
+  
+      <style>
+          body {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height: 100vh;
+              background: linear-gradient(135deg, #667eea, #764ba2);
+              font-family: Arial, sans-serif;
+          }
+  
+          .form-container {
+              background: white;
+              padding: 20px;
+              border-radius: 10px;
+              box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.3);
+              transform: perspective(1000px) rotateX(10deg);
+              transition: 0.3s;
+          }
+  
+          .form-container:hover {
+              transform: perspective(1000px) rotateX(0deg);
+          }
+  
+          h2 {
+              text-align: center;
+              margin-bottom: 20px;
+          }
+  
+          input {
+              width: 100%;
+              padding: 10px;
+              margin: 10px 0;
+              border: 1px solid #ccc;
+              border-radius: 5px;
+          }
+  
+          button {
+              width: 100%;
+              padding: 10px;
+              border: none;
+              background: #667eea;
+              color: white;
+              border-radius: 5px;
+              cursor: pointer;
+              box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+          }
+  
+          button:hover {
+              background: #564ab1;
+          }
+  
+          .signup-link {
+              text-align: center;
+              margin-top: 10px;
+          }
+  
+          .signup-link a {
+              color: #667eea;
+              text-decoration: none;
+          }
+  
+          .signup-link a:hover {
+              text-decoration: underline;
+          }
+      </style>
+  </head>
+  <body>
+
+    {% if messages %}
+{% for message in messages %}
+  <script>
+    console.log("Django message:", "{{ message|escapejs }}"); // Debug log for messages
+    Toastify({
+      text: "{{ message|escapejs }}",
+      duration: 5000,
+      close: true,
+      gravity: "top",
+      position: "right",
+
+      backgroundColor: "{% if message.tags == 'success' %}#4CAF50{% elif message.tags == 'error' %}#F44336{% else %}#FFC107{% endif %}",
+      stopOnFocus: true,
+    
+      style: {
+        width: "350px", 
+        marginTop: "45px"
+      }
+    }).showToast();
+ 
+  </script>
+{% endfor %}
+{% endif %}
+      <div class="form-container">
+          <h2>Login</h2>
+          <form method="post" action="/login">
+            {% csrf_token %}
+              <input type="email" placeholder="email" name="email" required>
+              <input type="password" placeholder="password" name="password" required>
+              <button type="submit">Login</button>
+          </form>
+          
+              <div class="text-center mt-3">
+                <a href="/forget-password" class="text-primary">Forgot Password?</a>
+                |
+                <a href="/signup" class="text-success">Create New Account</a>
+            </div>
+            
+          </div>
+      </div>
+  </body>
+  </html>
+  
+
+ 
+  
+    <script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
+<script type="text/javascript" src="js/bootstrap.js"></script> 
+<script type="text/javascript" src="js/SmoothScroll.js"></script> 
+<script type="text/javascript" src="js/nivo-lightbox.js"></script> 
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
+<script type="text/javascript" src="js/contact_me.js"></script> 
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
+
+{% endblock %}

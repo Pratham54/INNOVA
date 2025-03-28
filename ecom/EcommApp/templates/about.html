@@ -1,0 +1,211 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .about-section {
+        padding: 12rem 0 4rem 0;
+        background: linear-gradient(to right, #f8f9fa, #e9ecef);
+    }
+
+    .about-image {
+        margin-top: 2rem;
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+        object-fit: cover;
+    }
+
+    .about-image:hover img {
+        transform: scale(1.05);
+    }
+
+    .about-content {
+        padding: 2rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: #1a202c;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 2px;
+    }
+
+    .about-description {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #4a5568;
+        margin-bottom: 2rem;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .feature-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #667eea;
+    }
+
+    .feature-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+    }
+
+    .feature-description {
+        color: #718096;
+        line-height: 1.6;
+    }
+
+    .stats-section {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 4rem 0;
+        margin-top: 4rem;
+        color: white;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .stat-number {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+
+    @media (max-width: 768px) {
+        .about-image {
+            margin-bottom: 2rem;
+        }
+        
+        .about-content {
+            padding: 2rem 1rem;
+        }
+        
+        .features-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<!-- About Section -->
+<section class="about-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-image">
+                    <img src="{% static 'img/aboutus.jpg' %}"  class="img-responsive">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-content">
+                    <h2 class="section-title">Building Dreams Together</h2>
+                    <p class="about-description">At BuildNest, we're more than just builders – we're dream makers. With over two decades of experience in home construction and renovation, we've mastered the art of turning your vision into reality. Our commitment to excellence, innovation, and customer satisfaction sets us apart in the industry.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🏠</div>
+                            <h3 class="feature-title">Expert Construction</h3>
+                            <p class="feature-description">Professional home building with attention to every detail.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛠️</div>
+                            <h3 class="feature-title">Quality Materials</h3>
+                            <p class="feature-description">Premium materials for lasting durability and strength.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📋</div>
+                            <h3 class="feature-title">Project Planning</h3>
+                            <p class="feature-description">Detailed planning and timely execution of every project.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🤝</div>
+                            <h3 class="feature-title">Customer Support</h3>
+                            <p class="feature-description">Dedicated support throughout your construction journey.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Client Satisfaction</div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Expert Team</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,211 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+    .services-container {
+        padding: 4rem 2rem;
+        background: linear-gradient(to bottom, #f8fafc, #edf2f7);
+        min-height: 100vh;
+    }
+
+    .services-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+        padding: 1rem;
+    }
+
+    .services-header::after {
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 3px;
+        background: linear-gradient(to right, #667eea, #764ba2);
+        border-radius: 3px;
+    }
+
+    .services-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a202c;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.025em;
+        background: linear-gradient(135deg, #1a202c 0%, #4a5568 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .services-subtitle {
+        font-size: 1.1rem;
+        color: #4a5568;
+        max-width: 800px;
+        margin: 1.5rem auto;
+        line-height: 1.6;
+        padding: 0 1rem;
+        font-weight: 400;
+        display: block;
+        opacity: 0.9;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .service-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-media {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .service-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: all 0.5s ease;
+    }
+
+    .service-card:hover .service-image {
+        transform: scale(1.05);
+    }
+
+    .service-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .service-card:hover .service-overlay {
+        opacity: 1;
+    }
+
+    .service-content {
+        padding: 2rem;
+    }
+
+    .service-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 1rem;
+    }
+
+    .service-desc {
+        color: #718096;
+        line-height: 1.6;
+        margin-bottom: 1rem;
+    }
+
+    .service-features {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0;
+    }
+
+    .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem 0;
+        color: #4a5568;
+        transition: all 0.3s ease;
+    }
+
+    .feature-item i {
+        color: #667eea;
+        font-size: 0.875rem;
+    }
+
+    .feature-item:hover {
+        transform: translateX(5px);
+        color: #667eea;
+    }
+
+    @media (max-width: 768px) {
+        .services-container {
+            padding: 2rem 1rem;
+        }
+
+        .services-title {
+            font-size: 2rem;
+        }
+
+        .services-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+    }
+</style>
+
+<div class="services-container">
+    <div class="services-header">
+        <h1 class="services-title">Our Services</h1>
+        <p class="services-subtitle">"🏡 Building your dream home with quality, precision, and care. 🔨✨"</p>
+    </div>
+
+    <div class="services-grid">
+        {% for service in all_services %}
+            <div class="service-card">
+                <div class="service-media">
+                    <img src="{{ service.image.url }}" alt="{{ service.name }}" class="service-image">
+                    <div class="service-overlay"></div>
+                </div>
+                <div class="service-content">
+                    <h3 class="service-title">{{ service.name }}</h3>
+                    <p class="service-desc">{{ service.content }}</p>
+                    {% if service.features.all %}
+                    <ul class="service-features">
+                        {% for feature in service.features.all %}
+                        <li class="feature-item">
+                            <i class="fas fa-check"></i>
+                            <span>{{ feature.name }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        {% empty %}
+            <p>No services available at the moment.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<script type="text/javascript" src="{% static 'js/jquery.1.11.1.js' %}"></script> 
+<script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script> 
+<script type="text/javascript" src="{% static 'js/SmoothScroll.js' %}"></script> 
+<script type="text/javascript" src="{% static 'js/nivo-lightbox.js' %}"></script> 
+<script type="text/javascript" src="{% static 'js/jqBootstrapValidation.js' %}"></script> 
+<script type="text/javascript" src="{% static 'js/contact_me.js' %}"></script> 
+<script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+
+{% endblock %}

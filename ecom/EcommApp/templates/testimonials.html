@@ -1,0 +1,208 @@
+{% extends 'header.html' %}
+{% load static %}
+
+
+{% block content %} 
+
+<style>
+  .testimonials-container {
+      padding: 8rem 2rem 4rem;
+      background: linear-gradient(to bottom, #f8fafc, #edf2f7);
+      min-height: 100vh;
+  }
+
+  .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+      padding: 1rem;
+  }
+
+  .section-title h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a202c;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.025em;
+      background: linear-gradient(135deg, #1a202c 0%, #4a5568 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+  }
+
+  .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 3px;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      border-radius: 3px;
+  }
+
+  .testimonial {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+      margin-bottom: 2rem;
+      position: relative;
+  }
+
+  .testimonial:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .testimonial-image {
+    width: 100%;
+    height: 250px;
+    margin: 0;
+    overflow: hidden;
+    border: none;
+    position: relative;
+    border-radius: 20px 20px 0 0;
+}
+
+.testimonial-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.testimonial:hover .testimonial-image img {
+    transform: scale(1.05);
+}
+
+.testimonial-content {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 0 0 20px 20px;
+}
+
+  .testimonial-content p {
+      color: #4a5568;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+      position: relative;
+  }
+
+  .testimonial-content p::before,
+  .testimonial-content p::after {
+      content: '"';
+      color: #667eea;
+      font-size: 2rem;
+      font-weight: bold;
+  }
+
+  .testimonial-meta {
+      color: #2d3748;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1rem;
+      background: linear-gradient(to right, #f8fafc, #edf2f7);
+      border-radius: 0 0 20px 20px;
+  }
+
+  @media (max-width: 768px) {
+      .testimonials-container {
+          padding: 6rem 1rem 2rem;
+      }
+
+      .section-title h2 {
+          font-size: 2rem;
+      }
+
+      .testimonial {
+          margin-bottom: 1.5rem;
+      }
+
+      .testimonial-content {
+          padding: 1.5rem;
+      }
+  }
+</style>
+
+<!-- Testimonials Section -->
+<div id="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>Testimonials</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="testimonial">
+            <div class="testimonial-image"> <img src="{% static 'img/testimonials/001.jpg' %}" alt=" ">  </div>
+            <div class="testimonial-content">
+              <p>""We couldn't be happier with our new home! The attention to detail and quality craftsmanship exceeded our expectations. The team was professional, reliable, and delivered everything on time. Highly recommend!"</p>
+              <div class="testimonial-meta"> - Michael & Sarah T. </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial">
+            <div class="testimonial-image"> <img src="{% static 'img/testimonials/002.jpg' %}" alt=" "> </div>
+            <div class="testimonial-content">
+              <p>""Building a home can be stressful, but this company made the process smooth and hassle-free. They listened to our ideas, provided expert advice, and brought our dream home to life. Truly a 5-star experience!"</p>
+              <div class="testimonial-meta"> - David & Emily R. </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial">
+            <div class="testimonial-image"> <img src="{% static 'img/testimonials/003.jpg' %}" alt=" "> </div>
+            <div class="testimonial-content">
+              <p>""From start to finish, the team was honest, transparent, and hardworking. They kept us updated throughout the entire build, and the final result was beyond what we imagined. Thank you for making our vision a reality!"</p>
+              <div class="testimonial-meta"> - James W. </div>
+            </div>
+          </div>
+        </div>
+        <div class="row"> </div>
+        <div class="col-md-4">
+          <div class="testimonial">
+            <div class="testimonial-image"> <img src="{% static 'img/testimonials/004.jpg' %}" alt=" "></div>
+            <div class="testimonial-content">
+              <p>""What impressed us the most was their dedication to customer satisfaction. They were always available to answer our questions and made sure every little detail was perfect. We love our new home!"</p>
+              <div class="testimonial-meta"> - Lisa & Mark S.</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial">
+            <div class="testimonial-image"> <img src="{% static 'img/testimonials/005.jpg' %}" alt=" "></div>
+            <div class="testimonial-content">
+              <p>""We were concerned about delays and unexpected costs, but this team delivered exactly what they promised. Our home was completed on time and within budget without compromising on quality!"</p>
+              <div class="testimonial-meta"> - Jennifer P. </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial">
+            <div class="testimonial-image"> <img src="{% static 'img/testimonials/006.jpg' %}" alt=" "> </div>
+            <div class="testimonial-content">
+              <p>""The design and layout of our new home are both beautiful and practical. They understood our needs and created a space that fits our lifestyle perfectly. We couldn’t have asked for a better experience!"</p>
+              <div class="testimonial-meta"> - Brian & Jessica M. </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
+<script type="text/javascript" src="js/bootstrap.js"></script> 
+<script type="text/javascript" src="js/SmoothScroll.js"></script> 
+<script type="text/javascript" src="js/nivo-lightbox.js"></script> 
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
+<script type="text/javascript" src="js/contact_me.js"></script> 
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
+
+{% endblock %}

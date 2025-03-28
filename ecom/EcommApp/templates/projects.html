@@ -1,0 +1,226 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+    .projects-container {
+        padding: 4rem 2rem;
+        background: linear-gradient(to bottom, #f8fafc, #edf2f7);
+        min-height: 100vh;
+    }
+
+    .projects-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        position: relative;
+        padding: 1rem;
+    }
+
+    .projects-header::after {
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 150px;
+        height: 3px;
+        background: linear-gradient(to right, #667eea, #764ba2);
+        border-radius: 3px;
+    }
+
+    .projects-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #1a202c;
+        margin-bottom: 1.5rem;
+        letter-spacing: -0.025em;
+        background: linear-gradient(135deg, #1a202c 0%, #4a5568 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .projects-subtitle {
+        font-size: 1.1rem;
+        color: #4a5568;
+        max-width: 800px;
+        margin: 1.5rem auto;
+        line-height: 1.6;
+        padding: 0 1rem;
+        font-weight: 400;
+        display: block;
+        opacity: 0.9;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .project-card {
+        background: white;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .project-image {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        transition: all 0.5s ease;
+    }
+
+    .project-card:hover .project-image {
+        transform: scale(1.05);
+    }
+
+    .project-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.8));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .project-card:hover .project-overlay {
+        opacity: 1;
+    }
+
+    .project-content {
+        padding: 1.5rem;
+    }
+
+    .project-type {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: #ebf4ff;
+        color: #3182ce;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2d3748;
+        margin-bottom: 0.5rem;
+    }
+
+    .project-description {
+        color: #718096;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+    }
+
+    .project-details {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e2e8f0;
+    }
+
+    .detail-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #4a5568;
+        font-size: 0.9rem;
+    }
+
+    .detail-item i {
+        color: #3182ce;
+    }
+
+    .project-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-top: 1rem;
+    }
+
+    .project-status {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        z-index: 1;
+    }
+
+    .status-sale {
+        background: #c6f6d5;
+        color: #2f855a;
+    }
+
+    .status-rent {
+        background: #feebc8;
+        color: #c05621;
+    }
+
+    @media (max-width: 768px) {
+        .projects-container {
+            padding: 2rem 1rem;
+        }
+
+        .projects-title {
+            font-size: 2rem;
+        }
+
+        .projects-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+    }
+</style>
+
+<div class="projects-container">
+    <div class="projects-header">
+        <h1 class="projects-title">Our Featured Properties</h1>
+        <p class="projects-subtitle">"This is our dream project in the making! 🏡✨".</p>
+    </div>
+
+    <div class="projects-grid">
+        {% for project in all_projects %}
+        <div class="project-card">
+            <span class="project-status {% if project.status == 'For Sale' %}status-sale{% else %}status-rent{% endif %}">{{ project.status }}</span>
+            <div class="project-overlay"></div>
+            <img src="{{ project.image.url }}" alt="{{ project.name }}" class="project-image">
+            <div class="project-content">
+                <span class="project-type">{{ project.type }}</span>
+                <h3 class="project-title">{{ project.name }}</h3>
+                <p class="project-description">{{ project.description }}</p>
+                <div class="project-details">
+                    
+                </div>
+                <div class="project-price">{{ project.price }}</div>
+            </div>
+        </div>
+        {% empty %}
+        <p>No projects found.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

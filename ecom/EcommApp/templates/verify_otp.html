@@ -1,0 +1,143 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %} 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iofrm</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'new/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'new/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'new/css/iofrm-style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'new/css/iofrm-theme22.css' %}">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        
+        .form-body {
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+        
+        input[type="password"]:focus {
+            border-color: #667eea;
+        }
+        
+        .alert {
+            background-color: #f44336;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .ibtn {
+            background: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .ibtn:hover {
+            background: #45a049;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="form-body without-side">
+        <div class="row">
+            {% if messages %}
+            {% for message in messages %}
+            <script>
+                console.log("Django message:", "{{ message|escapejs }}");
+                Toastify({
+                    text: "{{ message|escapejs }}",
+                    duration: 5000,
+                    close: true,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "{% if message.tags == 'success' %}#4CAF50{% elif message.tags == 'error' %}#F44336{% else %}#FFC107{% endif %}",
+                    stopOnFocus: true,
+                    style: {
+                        width: "350px",
+                        marginTop: "45px"
+                    }
+                }).showToast();
+            </script>
+            {% endfor %}
+            {% endif %}
+
+            <div class="form-holder" style="margin-top: 50px;">
+                <div class="form-content">
+                    <div class="form-items">
+                        <h3>Password Reset</h3>
+                        <p class="text-muted">Enter the OTP sent to your email to verify your account.</p>
+                        <form action="/verify-otp" method="POST">
+                            {% csrf_token %}
+                            {% if error %}
+                                <div class="alert alert-danger" role="alert">{{ error }}</div>
+                            {% endif %}
+                            {% if success %}
+                                <div class="alert alert-success" role="alert">{{ success }}</div>
+                            {% endif %}
+                            <input type="text" class="form-control" id="otp" name="otp" placeholder="Enter OTP :" required value="{{ values.email }}">
+                            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Verify OTP</button>
+                            <div class="text-center mt-3">
+                                <p class="text-muted">Didn't receive an OTP? <a href="/forget-password">Resend OTP</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript" src="js/jquery.1.11.1.js"></script> 
+<script type="text/javascript" src="js/bootstrap.js"></script> 
+<script type="text/javascript" src="js/SmoothScroll.js"></script> 
+<script type="text/javascript" src="js/nivo-lightbox.js"></script> 
+<script type="text/javascript" src="js/jqBootstrapValidation.js"></script> 
+<script type="text/javascript" src="js/contact_me.js"></script> 
+<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
+
+{% endblock %}
