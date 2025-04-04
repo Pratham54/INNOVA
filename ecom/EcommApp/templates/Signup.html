@@ -1,4 +1,3 @@
-
 {% extends 'header.html' %}
 {% load static %}
 
@@ -95,11 +94,10 @@
               <input type="email" placeholder="email" name="email" required>
               <input type="password" placeholder="password" name="password" required>
               <input type="confirmpassword" placeholder="confirmpassword" name="confirmpassword" required>
-              
              <input type="file" id="profile_pic" name="profile_pic" accept="image/*"><br><br>
               <button type="submit">Sign up</button>
               <p>Already have an account? <a href="{% url 'login_page' %}">Log in here</a></p>
-            
+            +
           </form>
       </div>
   </body>

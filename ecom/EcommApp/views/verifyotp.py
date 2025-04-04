@@ -29,4 +29,5 @@ class VeryfyOTP(View):
             return redirect('/reset-password')
         else:
             messages.error(request, "Invalid OTP. Please try again.")
+            print(f"OTP entered: {otp_entered}")  # Debugging line
             return redirect('verify-otp')
